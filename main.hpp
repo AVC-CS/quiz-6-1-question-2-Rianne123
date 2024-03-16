@@ -18,7 +18,7 @@ int readFile() {
     int numEmployees;
     inFile >> numEmployees;
     cout << "ID \tName \tDepartment \tSalary" << endl;
-    
+
     double totalSalary = 0;
 
     for (int i = 0; i < numEmployees; ++i) {
@@ -41,10 +41,31 @@ int readFile() {
 }
 
 int writeFile() {
-    ifstream inFile(filename);
-    if (!inFile) {
-        cerr << "Error opening file." << endl;
-        return 0;
+     ofstream ofs;
+
+    ofs.open(filename);
+    if (!ofs)
+    {
+        cout << "File Open Error\n";
+        exit(0);
     }
+
+    int id, num;
+    string eName, dName;
+    double salary;
+
+    cout << "Enter the number of employees: ";
+    cin >> num;
+    ofs << num << endl; 
+
+    for (int i = 0; i < num; i++) {
+        cout << "Enter Employees id, name, department, and salary: ";
+        cin >> id >> eName >> dName >> salary;
+
+        ofs << id << " " << eName << " " << dName << " " << salary << endl; 
+    }
+
+    ofs.close();
+    cout << "Data Saved" << endl;
 }
 
