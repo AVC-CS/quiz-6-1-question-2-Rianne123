@@ -3,12 +3,13 @@
 #include <string>
 
 using namespace std; 
+int readFile(const string &filename);
+int writeFile(const string &filename);
 
-    string filename;
+    string filename = "employee.txt";;
     int empN;
-    filename = "employee.txt";
 
-int readFile() {
+int readFile(const string &filename) {
     ifstream inFile(filename);
     if (!inFile) {
         cerr << "Error opening file." << endl;
@@ -40,12 +41,9 @@ int readFile() {
     return numEmployees;
 }
 
-int writeFile() {
-     ofstream ofs;
-
-    ofs.open(filename);
-    if (!ofs)
-    {
+int writeFile(const string &filename) {
+    ofstream ofs(filename);
+    if (!ofs) {
         cout << "File Open Error\n";
         exit(0);
     }
@@ -67,5 +65,7 @@ int writeFile() {
 
     ofs.close();
     cout << "Data Saved" << endl;
+
+    return num;
 }
 
